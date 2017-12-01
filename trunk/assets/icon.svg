@@ -1,0 +1,20 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+ <metadata id="metadata3342">image/svg+xml</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="402" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g transform="matrix(0.47750612,-0.47750656,0.47750612,0.47750656,-199.3792,-22.558573) " id="g4387">
+   <rect fill="#61befc" id="rect4226" width="101" height="101" x="35.294998" y="497.89771"/>
+   <rect fill="#60befc" id="rect4226-9-7" width="101" height="101" x="235.295" y="497.89801"/>
+   <rect fill="#5eb6f2" id="rect4226-1" width="101" height="101" x="35.294998" y="597.88971"/>
+   <rect fill="#61befc" id="rect4226-9-5" width="101" height="101" x="135.295" y="597.89001"/>
+   <rect fill="#58aae1" id="rect4226-1-2" width="101" height="101" x="35.294998" y="697.88977"/>
+   <rect fill="#5eb6f2" id="rect4226-9-5-3" width="101" height="101" x="135.295" y="697.89001"/>
+   <rect fill="#61befc" id="rect4226-9-7-0-0" width="101" height="101" x="235.295" y="697.89001"/>
+  </g>
+ </g>
+</svg>
