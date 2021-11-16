@@ -100,6 +100,11 @@ class UptodownWPShortcode
 	}
 	
 	public function getPSIDs($article) {
+        
+        if(stripos($article,'play.google.com/store/apps/details') === FALSE){
+            return false;
+        }
+        
         require_once('simplehtmldom/simple_html_dom.php');
         $appids = array();
         $text = new simple_html_dom();
