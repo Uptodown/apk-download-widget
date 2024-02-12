@@ -4,7 +4,7 @@ Contributors: uptodown
 Tags: Apps, APK, Android, Download
 Requires at least: 3.0.1
 Tested up to: 6.4.2
-Stable tag: 0.1.4
+Stable tag: 0.1.6
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,7 +43,7 @@ Scroll down to: More info -> Package Name
 
 == Changelog ==
 
-= 0.1.4 =
+= 0.1.6 =
 * Tested in 6.4.2
 
 = 0.1.3 =
