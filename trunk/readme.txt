@@ -44,7 +44,7 @@ Scroll down to: More info -> Package Name
 == Changelog ==
 
 = 0.1.10 =
-* Tested in 6.6.1
+* Tested in 6.7.1
 
 = 0.1.9 =
 * Tested in 6.6.1
