@@ -65,24 +65,7 @@ define('DEFAULT_SPAN_TEXT', " ");
 define('MAX_FILE_SIZE', 5000000);
 // helper functions
 // -----------------------------------------------------------------------------
-// get html dom from file
-// $maxlen is defined in the code as PHP_STREAM_COPY_ALL which is defined as -1.
-function file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
-{
-    // We DO force the tags to be terminated.
-    $dom = new simple_html_dom(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
-    // For sourceforge users: uncomment the next line and comment the retreive_url_contents line 2 lines down if it is not already done.
-    $contents = file_get_contents($url, $use_include_path, $context, $offset);
-    // Paperg - use our own mechanism for getting the contents as we want to control the timeout.
-    //$contents = retrieve_url_contents($url);
-    if (empty($contents) || strlen($contents) > MAX_FILE_SIZE)
-    {
-        return false;
-    }
-    // The second parameter can force the selectors to all be lowercase.
-    $dom->load($contents, $lowercase, $stripRN);
-    return $dom;
-}
+
 
 // get html dom from string
 function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
@@ -95,12 +78,6 @@ function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_char
     }
     $dom->load($str, $lowercase, $stripRN);
     return $dom;
-}
-
-// dump html dom tree
-function dump_html_tree($node, $show_attr=true, $deep=0)
-{
-    $node->dump($node);
 }
 
 
@@ -147,96 +124,6 @@ class simple_html_dom_node
         $this->nodes = null;
         $this->parent = null;
         $this->children = null;
-    }
-
-    // dump node's tree
-    function dump($show_attr=true, $deep=0)
-    {
-        $lead = str_repeat('    ', $deep);
-
-        echo $lead.$this->tag;
-        if ($show_attr && count($this->attr)>0)
-        {
-            echo '(';
-            foreach ($this->attr as $k=>$v)
-                echo "[$k]=>\"".$this->$k.'", ';
-            echo ')';
-        }
-        echo "\n";
-
-        if ($this->nodes)
-        {
-            foreach ($this->nodes as $c)
-            {
-                $c->dump($show_attr, $deep+1);
-            }
-        }
-    }
-
-
-    // Debugging function to dump a single dom node with a bunch of information about it.
-    function dump_node($echo=true)
-    {
-
-        $string = $this->tag;
-        if (count($this->attr)>0)
-        {
-            $string .= '(';
-            foreach ($this->attr as $k=>$v)
-            {
-                $string .= "[$k]=>\"".$this->$k.'", ';
-            }
-            $string .= ')';
-        }
-        if (count($this->_)>0)
-        {
-            $string .= ' $_ (';
-            foreach ($this->_ as $k=>$v)
-            {
-                if (is_array($v))
-                {
-                    $string .= "[$k]=>(";
-                    foreach ($v as $k2=>$v2)
-                    {
-                        $string .= "[$k2]=>\"".$v2.'", ';
-                    }
-                    $string .= ")";
-                } else {
-                    $string .= "[$k]=>\"".$v.'", ';
-                }
-            }
-            $string .= ")";
-        }
-
-        if (isset($this->text))
-        {
-            $string .= " text: (" . $this->text . ")";
-        }
-
-        $string .= " HDOM_INNER_INFO: '";
-        if (isset($node->_[HDOM_INFO_INNER]))
-        {
-            $string .= $node->_[HDOM_INFO_INNER] . "'";
-        }
-        else
-        {
-            $string .= ' NULL ';
-        }
-
-        $string .= " children: " . count($this->children);
-        $string .= " nodes: " . count($this->nodes);
-        $string .= " tag_start: " . $this->tag_start;
-        $string .= "\n";
-
-        if ($echo)
-        {
-            echo $string;
-            return;
-        }
-        else
-        {
-            return $string;
-        }
     }
 
     // returns the parent of node
@@ -808,11 +695,11 @@ class simple_html_dom_node
     }
 
     /**
-    * Returns true if $string is valid UTF-8 and false otherwise.
-    *
-    * @param mixed $str String to be tested
-    * @return boolean
-    */
+     * Returns true if $string is valid UTF-8 and false otherwise.
+     *
+     * @param mixed $str String to be tested
+     * @return boolean
+     */
     static function is_utf8($str)
     {
         $c=0; $b=0;
@@ -888,7 +775,7 @@ class simple_html_dom_node
             $attributes = array();
             preg_match_all("/([\w-]+)\s*:\s*([^;]+)\s*;?/", $this->attr['style'], $matches, PREG_SET_ORDER);
             foreach ($matches as $match) {
-              $attributes[$match[1]] = $match[2];
+                $attributes[$match[1]] = $match[2];
             }
 
             // If there is a width in the style attributes:
@@ -934,7 +821,7 @@ class simple_html_dom_node
         // If the class or id is specified in a SEPARATE css file thats not on the page, go get it and do what we were just doing for the ones on the page.
 
         $result = array('height' => $height,
-                        'width' => $width);
+            'width' => $width);
         return $result;
     }
 
@@ -1009,7 +896,7 @@ class simple_html_dom
         'p'=>array('p'=>1),
         'nobr'=>array('nobr'=>1),
         'b'=>array('b'=>1),
-		'option'=>array('option'=>1),
+        'option'=>array('option'=>1),
     );
 
     function __construct($str=null, $lowercase=true, $forceTagsClosed=true, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
@@ -1098,13 +985,6 @@ class simple_html_dom
         $this->callback = null;
     }
 
-    // save dom as string
-    function save($filepath='')
-    {
-        $ret = $this->root->innertext();
-        if ($filepath!=='') file_put_contents($filepath, $ret, LOCK_EX);
-        return $ret;
-    }
 
     // find dom node by css selector
     // Paperg - allow us to specify that we want case insensitive testing of the value of the selector.
