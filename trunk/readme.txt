@@ -4,7 +4,7 @@ Contributors: uptodown
 Tags: Apps, APK, Android, Download
 Requires at least: 3.0.1
 Tested up to: 6.7.1
-Stable tag: 0.1.10
+Stable tag: 0.1.11
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ Scroll down to: More info -> Package Name
 2. An example of your Uptodown WP Widget on Desktop screenshot-2.jpg
 
 == Changelog ==
+
+= 0.1.11 =
+* Tested in 6.7.1
 
 = 0.1.10 =
 * Tested in 6.7.1
