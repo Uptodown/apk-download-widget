@@ -4,7 +4,7 @@
 Plugin Name: Uptodown APK Download Widget
 Plugin URI: http://www.uptodown.com
 Description: Add information about any Android app right onto your blog
-Version: 0.1.10
+Version: 0.1.11
 Author: Uptodown
 Author URI: http://www.uptodown.com
 License: GPLv2
@@ -42,13 +42,16 @@ class UptodownWPShortcode
         $lang = $this->getAvailableLanguage(substr(get_bloginfo('language'),0,2));
         update_option('utd_widget_lang', $lang);
 
-        if(empty($opts['packagename'])) {
+        if (empty($opts['packagename'])) {
             return '';
         } else {
             $shortcode_exist = true;
-            if(is_string($opts['packagename']) && trim($opts['packagename']) !== '' && preg_match('/^[a-zA-Z]\w*(\.\w+)+$/', $opts['packagename'])) {
-                return '<div class="utd_widget" data-packagename="' . $opts['packagename'] . '"></div>';
+
+            if (is_string($opts['packagename']) && trim($opts['packagename']) !== '' && preg_match('/^[a-zA-Z]\w*(\.\w+)+$/', $opts['packagename'])) {
+                $packagename = sanitize_text_field($opts['packagename']);
+                return '<div class="utd_widget" data-packagename="' . esc_attr($packagename) . '"></div>';
             }
+
             return '';
         }
     }
@@ -91,18 +94,22 @@ class UptodownWPShortcode
     }
 
     public function setWidgetByPSIDs($content) {
-        if(!empty($this->options['autopsids']) && !has_shortcode($content,'utd-widget')) {
-            if($appids=$this->getPSIDs($content)) {
+        if (!empty($this->options['autopsids']) && !has_shortcode($content, 'utd-widget')) {
+            if ($appids = $this->getPSIDs($content)) {
                 $widgets = '';
-                foreach($appids as $appid) {
-                    if(is_string($appid) && trim($appid) !== '' && preg_match('/^[a-zA-Z]\w*(\.\w+)+$/', $appid)) {
-                        $widgets .= '<div class="utd_widget" data-packagename="' . $appid . '"></div>';
+
+                foreach ($appids as $appid) {
+                    if ( is_string($appid) && trim($appid) !== '' && preg_match('/^[a-zA-Z]\w*(\.\w+)+$/', $appid) ) {
+                        $sanitized_appid = sanitize_text_field($appid);
+                        $widgets .= '<div class="utd_widget" data-packagename="' . esc_attr($sanitized_appid) . '"></div>';
                     }
                 }
+
                 $content .= $widgets;
                 $widget_appears = true;
             }
         }
+
         return $content;
     }
 
