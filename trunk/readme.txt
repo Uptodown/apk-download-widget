@@ -3,8 +3,8 @@
 Contributors: uptodown
 Tags: Apps, APK, Android, Download
 Requires at least: 3.0.1
-Tested up to: 6.7.1
-Stable tag: 0.1.11
+Tested up to: 6.8.3
+Stable tag: 0.1.14
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Uptodown is a major marketplace across the globe. Our objective is to offer all 
 
 Using our plugin is easy, just install it, activate and use the short code to add detailed information to your post about any Android App. 
 
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugilsn through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Inserting our widget onto any part of your blog post or page is as easy as typing in the following code anywhere within your text (you can also directly paste it when editing)
 
@@ -42,6 +42,9 @@ Scroll down to: More info -> Package Name
 2. An example of your Uptodown WP Widget on Desktop screenshot-2.jpg
 
 == Changelog ==
+
+= 0.1.14 =
+* Tested in 6.8.3
 
 = 0.1.11 =
 * Tested in 6.7.1
