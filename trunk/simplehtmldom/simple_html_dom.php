@@ -575,6 +575,10 @@ class simple_html_dom_node
         $result = array();
         //print_r($matches);
 
+        if (!is_array($matches) || $matches === null) {
+            return array();
+        }
+
         foreach ($matches as $m) {
             $m[0] = trim($m[0]);
             if ($m[0]==='' || $m[0]==='/' || $m[0]==='//') continue;
