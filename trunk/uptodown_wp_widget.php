@@ -4,7 +4,7 @@
 Plugin Name: Uptodown APK Download Widget
 Plugin URI: http://www.uptodown.com
 Description: Add information about any Android app right onto your blog
-Version: 0.1.14
+Version: 0.1.15
 Author: Uptodown
 Author URI: http://www.uptodown.com
 License: GPLv2
